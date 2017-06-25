@@ -1,0 +1,981 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>WindowMain</class>
+ <widget class="QMainWindow" name="WindowMain">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>950</width>
+    <height>469</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+    <horstretch>0</horstretch>
+    <verstretch>1</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="mouseTracking">
+   <bool>true</bool>
+  </property>
+  <property name="windowTitle">
+   <string>joPassDB</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="../../resources/resource.qrc">
+    <normaloff>:/logo.png</normaloff>:/logo.png</iconset>
+  </property>
+  <property name="toolButtonStyle">
+   <enum>Qt::ToolButtonTextBesideIcon</enum>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <item>
+     <widget class="QFrame" name="menuBar1">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">/*
+QFrame#menuBar1{
+	background-color: rgb(56, 56, 56);
+}
+
+QWidget{
+	background-color: rgb(56, 56, 56);
+}
+
+QToolButton{
+	border:none;
+    padding-top:5px;
+    padding-bottom:5px;
+    border-color: rgb(56, 56, 56);
+    border-bottom-style:solid;
+    border-width: 5px;
+}
+
+QToolButton:pressed {
+    border-color: rgb(255, 255, 255);
+    border-bottom-style:solid;
+    border-width: 5px;
+}
+
+QToolButton:hover {
+    border-color: rgb(255, 255, 255);
+    border-bottom-style:solid;
+    border-width: 5px;
+}
+
+QToolButton:checked {
+    border-color: rgb(255, 255, 255);
+    border-bottom-style:solid;
+    border-width: 5px;
+}
+
+QLabel{
+	color: rgb(255, 255, 255);
+	font: 87 11pt &quot;Arial Black&quot;;
+}
+
+QAction{
+	border:none;	
+	color: rgb(255, 255, 255);
+}
+
+QToolButton:menu-arrow{
+}
+
+QToolButton::menu-indicator {
+	subcontrol-position: right center;
+    subcontrol-origin: padding;
+}
+
+
+QMenu{
+	color: rgb(255, 255, 255);
+	margin: 2px;
+}
+
+QMenu::item {
+	margin: 2px 2px 2px 2px;
+	padding: 4px 25px 4px 25px;
+    border: 2px solid transparent;
+}
+
+QMenu::item:selected {
+     bo0rder-left-color: rgb(255, 255, 255);
+}
+*/</string>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout_3">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="QToolButton" name="toolButtonSave">
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Save file&lt;/p&gt;&lt;p&gt;Click on the right arrow for more options.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="statusTip">
+          <string>Save file</string>
+         </property>
+         <property name="text">
+          <string>...</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../../resources/resource.qrc">
+           <normaloff>:/icons_black/icons_black/save2_black.png</normaloff>:/icons_black/icons_black/save2_black.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>64</width>
+           <height>32</height>
+          </size>
+         </property>
+         <property name="autoRaise">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="toolButtonClose">
+         <property name="mouseTracking">
+          <bool>false</bool>
+         </property>
+         <property name="toolTip">
+          <string>Close file</string>
+         </property>
+         <property name="statusTip">
+          <string>Close file</string>
+         </property>
+         <property name="text">
+          <string>...</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../../resources/resource.qrc">
+           <normaloff>:/icons_black/icons_black/close_black.png</normaloff>:/icons_black/icons_black/close_black.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>64</width>
+           <height>32</height>
+          </size>
+         </property>
+         <property name="autoRaise">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="toolButtonOpen">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Open file.&lt;/p&gt;&lt;p&gt;Click on the right arrow for more options!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="statusTip">
+          <string>Open file</string>
+         </property>
+         <property name="autoFillBackground">
+          <bool>false</bool>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
+         <property name="text">
+          <string>Open</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../../resources/resource.qrc">
+           <normaloff>:/icons_black/icons_black/open_folder2_black.png</normaloff>:/icons_black/icons_black/open_folder2_black.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>64</width>
+           <height>32</height>
+          </size>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonIconOnly</enum>
+         </property>
+         <property name="autoRaise">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="toolButtonEntry">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="toolTip">
+          <string>Add, edit or remove password entries.</string>
+         </property>
+         <property name="statusTip">
+          <string>Add, edit or remove password entries.</string>
+         </property>
+         <property name="text">
+          <string>Add Entry</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../../resources/resource.qrc">
+           <normaloff>:/icons_black/icons_black/key2_black.png</normaloff>:/icons_black/icons_black/key2_black.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>64</width>
+           <height>32</height>
+          </size>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonIconOnly</enum>
+         </property>
+         <property name="autoRaise">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="toolButtonGroup">
+         <property name="toolTip">
+          <string>Add, edit or remove categories.</string>
+         </property>
+         <property name="statusTip">
+          <string>Add, edit or remove categories.</string>
+         </property>
+         <property name="text">
+          <string>Groups</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../../resources/resource.qrc">
+           <normaloff>:/icons_black/icons_black/category2_black.png</normaloff>:/icons_black/icons_black/category2_black.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>64</width>
+           <height>32</height>
+          </size>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <property name="autoRaise">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="toolButtonAutoType">
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Perform an auto type.&lt;/p&gt;&lt;p&gt;Click on the right arrow for more options!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="statusTip">
+          <string>Perform an auto type.</string>
+         </property>
+         <property name="text">
+          <string>...</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../../resources/resource.qrc">
+           <normaloff>:/icons_black/icons_black/enter2_black.png</normaloff>:/icons_black/icons_black/enter2_black.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>64</width>
+           <height>32</height>
+          </size>
+         </property>
+         <property name="checkable">
+          <bool>false</bool>
+         </property>
+         <property name="autoRaise">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="toolButtonOpenURL">
+         <property name="text">
+          <string>...</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../../resources/resource.qrc">
+           <normaloff>:/icons_black/icons_black/domain_black.png</normaloff>:/icons_black/icons_black/domain_black.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>64</width>
+           <height>32</height>
+          </size>
+         </property>
+         <property name="autoRaise">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="toolButtonLock">
+         <property name="toolTip">
+          <string>Lock or unlock file.</string>
+         </property>
+         <property name="statusTip">
+          <string>Lock or unlock file.</string>
+         </property>
+         <property name="text">
+          <string>...</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../../resources/resource.qrc">
+           <normaloff>:/icons_black/icons_black/password_black.png</normaloff>:/icons_black/icons_black/password_black.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>64</width>
+           <height>32</height>
+          </size>
+         </property>
+         <property name="autoRaise">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="Line" name="line_7">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="buttonMenu">
+         <property name="toolTip">
+          <string>More features</string>
+         </property>
+         <property name="statusTip">
+          <string>More features</string>
+         </property>
+         <property name="text">
+          <string>...</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../../resources/resource.qrc">
+           <normaloff>:/icons_black/icons_black/menu_black.png</normaloff>:/icons_black/icons_black/menu_black.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>32</width>
+           <height>32</height>
+          </size>
+         </property>
+         <property name="checkable">
+          <bool>false</bool>
+         </property>
+         <property name="autoRaise">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer_3">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="textSearch">
+         <property name="font">
+          <font>
+           <pointsize>11</pointsize>
+          </font>
+         </property>
+         <property name="focusPolicy">
+          <enum>Qt::StrongFocus</enum>
+         </property>
+         <property name="autoFillBackground">
+          <bool>false</bool>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
+         <property name="inputMask">
+          <string/>
+         </property>
+         <property name="frame">
+          <bool>true</bool>
+         </property>
+         <property name="placeholderText">
+          <string>search...</string>
+         </property>
+         <property name="cursorMoveStyle">
+          <enum>Qt::VisualMoveStyle</enum>
+         </property>
+         <property name="clearButtonEnabled">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer_2">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Fixed</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>9</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QToolButton" name="toolButtonComment">
+         <property name="toolTip">
+          <string>Feedback, Bug reporting</string>
+         </property>
+         <property name="statusTip">
+          <string>Feedback, Bug reporting</string>
+         </property>
+         <property name="text">
+          <string>Feedback</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../../resources/resource.qrc">
+           <normaloff>:/icons_black/icons_black/feedback_black.png</normaloff>:/icons_black/icons_black/feedback_black.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>16</width>
+           <height>32</height>
+          </size>
+         </property>
+         <property name="autoRaise">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer_4">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Fixed</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>5</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="Line" name="line_6">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QSplitter" name="splitter">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::NoFrame</enum>
+      </property>
+      <property name="midLineWidth">
+       <number>0</number>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="opaqueResize">
+       <bool>true</bool>
+      </property>
+      <property name="handleWidth">
+       <number>5</number>
+      </property>
+      <property name="childrenCollapsible">
+       <bool>false</bool>
+      </property>
+      <widget class="QWidget" name="widget" native="true">
+       <layout class="QVBoxLayout" name="verticalLayout_4">
+        <property name="leftMargin">
+         <number>9</number>
+        </property>
+        <property name="topMargin">
+         <number>0</number>
+        </property>
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
+        <property name="bottomMargin">
+         <number>0</number>
+        </property>
+        <item>
+         <widget class="QTreeView" name="tableGroups">
+          <property name="autoFillBackground">
+           <bool>true</bool>
+          </property>
+          <property name="styleSheet">
+           <string notr="true"/>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::NoFrame</enum>
+          </property>
+          <property name="editTriggers">
+           <set>QAbstractItemView::NoEditTriggers</set>
+          </property>
+          <property name="indentation">
+           <number>10</number>
+          </property>
+          <property name="rootIsDecorated">
+           <bool>false</bool>
+          </property>
+          <property name="animated">
+           <bool>true</bool>
+          </property>
+          <property name="headerHidden">
+           <bool>false</bool>
+          </property>
+          <attribute name="headerVisible">
+           <bool>true</bool>
+          </attribute>
+         </widget>
+        </item>
+        <item>
+         <widget class="QWidget" name="widgetGroupToolBar" native="true">
+          <layout class="QHBoxLayout" name="horizontalLayout_2">
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
+            <number>0</number>
+           </property>
+           <item>
+            <spacer name="horizontalSpacer">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="widget_3" native="true">
+       <layout class="QVBoxLayout" name="verticalLayout_2">
+        <property name="leftMargin">
+         <number>0</number>
+        </property>
+        <property name="topMargin">
+         <number>0</number>
+        </property>
+        <property name="rightMargin">
+         <number>9</number>
+        </property>
+        <property name="bottomMargin">
+         <number>0</number>
+        </property>
+        <item>
+         <widget class="QTableView" name="tablePasswords">
+          <property name="styleSheet">
+           <string notr="true"/>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::NoFrame</enum>
+          </property>
+          <property name="editTriggers">
+           <set>QAbstractItemView::NoEditTriggers</set>
+          </property>
+          <property name="showDropIndicator" stdset="0">
+           <bool>true</bool>
+          </property>
+          <property name="alternatingRowColors">
+           <bool>true</bool>
+          </property>
+          <property name="selectionBehavior">
+           <enum>QAbstractItemView::SelectRows</enum>
+          </property>
+          <property name="horizontalScrollMode">
+           <enum>QAbstractItemView::ScrollPerPixel</enum>
+          </property>
+          <property name="showGrid">
+           <bool>false</bool>
+          </property>
+          <property name="gridStyle">
+           <enum>Qt::SolidLine</enum>
+          </property>
+          <attribute name="horizontalHeaderCascadingSectionResizes">
+           <bool>false</bool>
+          </attribute>
+          <attribute name="horizontalHeaderDefaultSectionSize">
+           <number>150</number>
+          </attribute>
+          <attribute name="horizontalHeaderMinimumSectionSize">
+           <number>27</number>
+          </attribute>
+          <attribute name="horizontalHeaderStretchLastSection">
+           <bool>true</bool>
+          </attribute>
+          <attribute name="verticalHeaderVisible">
+           <bool>false</bool>
+          </attribute>
+          <attribute name="verticalHeaderDefaultSectionSize">
+           <number>23</number>
+          </attribute>
+         </widget>
+        </item>
+        <item>
+         <widget class="QWidget" name="widgetPasswordToolBar" native="true">
+          <layout class="QHBoxLayout" name="horizontalLayout">
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
+            <number>0</number>
+           </property>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+    <item>
+     <widget class="QProgressBar" name="progressEmptyClipboard">
+      <property name="maximum">
+       <number>20000</number>
+      </property>
+      <property name="value">
+       <number>0</number>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+      <property name="format">
+       <string> %v / %m ms</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+  <action name="actionNew">
+   <property name="icon">
+    <iconset resource="../../resources/resource.qrc">
+     <normaloff>:/icons_black/icons_black/new_black.png</normaloff>:/icons_black/icons_black/new_black.png</iconset>
+   </property>
+   <property name="text">
+    <string>New</string>
+   </property>
+   <property name="statusTip">
+    <string>Create new password container</string>
+   </property>
+  </action>
+  <action name="buttonAddPassword">
+   <property name="icon">
+    <iconset resource="../../resources/resource.qrc">
+     <normaloff>:/icons_black/icons_black/plus_black.png</normaloff>:/icons_black/icons_black/plus_black.png</iconset>
+   </property>
+   <property name="text">
+    <string>Add password</string>
+   </property>
+   <property name="statusTip">
+    <string>Add password entry</string>
+   </property>
+  </action>
+  <action name="buttonDeletePassword">
+   <property name="icon">
+    <iconset resource="../../resources/resource.qrc">
+     <normaloff>:/icons_black/icons_black/delete_black.png</normaloff>:/icons_black/icons_black/delete_black.png</iconset>
+   </property>
+   <property name="text">
+    <string>Delete password</string>
+   </property>
+   <property name="toolTip">
+    <string>Delete entry</string>
+   </property>
+   <property name="statusTip">
+    <string>Delete password entry</string>
+   </property>
+  </action>
+  <action name="buttonEditPassword">
+   <property name="icon">
+    <iconset resource="../../resources/resource.qrc">
+     <normaloff>:/icons_black/icons_black/edit_black.png</normaloff>:/icons_black/icons_black/edit_black.png</iconset>
+   </property>
+   <property name="text">
+    <string>Edit password</string>
+   </property>
+   <property name="statusTip">
+    <string>Edit password entry</string>
+   </property>
+  </action>
+  <action name="actionClose">
+   <property name="icon">
+    <iconset resource="../../resources/resource.qrc">
+     <normaloff>:/icons_black/icons_black/close_black.png</normaloff>:/icons_black/icons_black/close_black.png</iconset>
+   </property>
+   <property name="text">
+    <string>Close</string>
+   </property>
+  </action>
+  <action name="actionPrint">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../../resources/resource.qrc">
+     <normaloff>:/icons_black/icons_black/print_black.png</normaloff>:/icons_black/icons_black/print_black.png</iconset>
+   </property>
+   <property name="text">
+    <string>Print</string>
+   </property>
+  </action>
+  <action name="actionSettings">
+   <property name="checked">
+    <bool>false</bool>
+   </property>
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../../resources/resource.qrc">
+     <normaloff>:/icons_black/icons_black/settings_black.png</normaloff>:/icons_black/icons_black/settings_black.png</iconset>
+   </property>
+   <property name="text">
+    <string>Settings</string>
+   </property>
+   <property name="iconText">
+    <string>Settings</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::NoRole</enum>
+   </property>
+   <property name="iconVisibleInMenu">
+    <bool>true</bool>
+   </property>
+  </action>
+  <action name="actionAbout">
+   <property name="icon">
+    <iconset resource="../../resources/resource.qrc">
+     <normaloff>:/icons_black/icons_black/info_black.png</normaloff>:/icons_black/icons_black/info_black.png</iconset>
+   </property>
+   <property name="text">
+    <string>About</string>
+   </property>
+   <property name="toolTip">
+    <string>About this program</string>
+   </property>
+   <property name="visible">
+    <bool>true</bool>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::TextHeuristicRole</enum>
+   </property>
+   <property name="iconVisibleInMenu">
+    <bool>true</bool>
+   </property>
+  </action>
+  <action name="actionHelp">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../../resources/resource.qrc">
+     <normaloff>:/icons_black/icons_black/help_black.png</normaloff>:/icons_black/icons_black/help_black.png</iconset>
+   </property>
+   <property name="text">
+    <string>Help</string>
+   </property>
+  </action>
+  <action name="buttonOpenUrl">
+   <property name="icon">
+    <iconset resource="../../resources/resource.qrc">
+     <normaloff>:/icons_black/icons_black/domain_black.png</normaloff>:/icons_black/icons_black/domain_black.png</iconset>
+   </property>
+   <property name="text">
+    <string>Open URL</string>
+   </property>
+   <property name="toolTip">
+    <string>Open URL</string>
+   </property>
+   <property name="statusTip">
+    <string>Open URL</string>
+   </property>
+  </action>
+  <action name="buttonCopyPassword">
+   <property name="icon">
+    <iconset resource="../../resources/resource.qrc">
+     <normaloff>:/icons_black/icons_black/copy2_black.png</normaloff>:/icons_black/icons_black/copy2_black.png</iconset>
+   </property>
+   <property name="text">
+    <string>Copy password</string>
+   </property>
+   <property name="toolTip">
+    <string>Copy password</string>
+   </property>
+   <property name="statusTip">
+    <string>Copy password</string>
+   </property>
+  </action>
+  <action name="buttonCopyUser">
+   <property name="icon">
+    <iconset resource="../../resources/resource.qrc">
+     <normaloff>:/icons_black/icons_black/user_group_man2_black.png</normaloff>:/icons_black/icons_black/user_group_man2_black.png</iconset>
+   </property>
+   <property name="text">
+    <string>Copy username</string>
+   </property>
+   <property name="toolTip">
+    <string>Copy username</string>
+   </property>
+   <property name="statusTip">
+    <string>Copy username</string>
+   </property>
+  </action>
+  <action name="buttonAddGroup">
+   <property name="icon">
+    <iconset resource="../../resources/resource.qrc">
+     <normaloff>:/icons_black/icons_black/plus_black.png</normaloff>:/icons_black/icons_black/plus_black.png</iconset>
+   </property>
+   <property name="text">
+    <string>Add category</string>
+   </property>
+   <property name="statusTip">
+    <string>Add group</string>
+   </property>
+  </action>
+  <action name="buttonEditGroup">
+   <property name="icon">
+    <iconset resource="../../resources/resource.qrc">
+     <normaloff>:/icons_black/icons_black/edit_black.png</normaloff>:/icons_black/icons_black/edit_black.png</iconset>
+   </property>
+   <property name="text">
+    <string>Edit category</string>
+   </property>
+   <property name="statusTip">
+    <string>Edit group</string>
+   </property>
+  </action>
+  <action name="buttonRemoveGroup">
+   <property name="icon">
+    <iconset resource="../../resources/resource.qrc">
+     <normaloff>:/icons_black/icons_black/delete_black.png</normaloff>:/icons_black/icons_black/delete_black.png</iconset>
+   </property>
+   <property name="text">
+    <string>Remove category</string>
+   </property>
+   <property name="statusTip">
+    <string>Remove group</string>
+   </property>
+  </action>
+  <action name="actionAutotype">
+   <property name="icon">
+    <iconset resource="../../resources/resource.qrc">
+     <normaloff>:/icons_black/icons_black/enter2_black.png</normaloff>:/icons_black/icons_black/enter2_black.png</iconset>
+   </property>
+   <property name="text">
+    <string>Auto type</string>
+   </property>
+  </action>
+  <action name="actionImport">
+   <property name="icon">
+    <iconset resource="../../resources/resource.qrc">
+     <normaloff>:/icons_white/icons_white/import2_white.png</normaloff>:/icons_white/icons_white/import2_white.png</iconset>
+   </property>
+   <property name="text">
+    <string>Import</string>
+   </property>
+  </action>
+  <action name="actionExport">
+   <property name="icon">
+    <iconset resource="../../resources/resource.qrc">
+     <normaloff>:/icons_white/icons_white/export2_white.png</normaloff>:/icons_white/icons_white/export2_white.png</iconset>
+   </property>
+   <property name="text">
+    <string>Export</string>
+   </property>
+  </action>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources>
+  <include location="../../resources/resource.qrc"/>
+ </resources>
+ <connections/>
+</ui>

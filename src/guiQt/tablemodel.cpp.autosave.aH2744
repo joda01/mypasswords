@@ -1,0 +1,154 @@
+#include "tablemodel.h"
+#include <QSize>
+#include <QDebug>
+
+TableModel::TableModel(QObject *parent) :QAbstractTableModel(parent)
+{
+}
+
+/**
+***************************************************************************
+* Gibt die Anzahl an Zeilen zurueck
+*
+* \author Joachim Danmayr
+* \date   2012-10-13
+*
+***************************************************************************
+*/
+int TableModel::rowCount(const QModelIndex &parent) const
+{
+    Q_UNUSED(parent);
+    return mDataList.size();
+}
+
+/**
+***************************************************************************
+* Gibt die Anzahl an Spalten zurueck
+*
+* \author Joachim Danmayr
+* \date   2012-10-13
+*
+***************************************************************************
+*/
+int TableModel::columnCount(const QModelIndex &parent) const
+{
+    Q_UNUSED(parent);
+    return mPasswordContainer->GetEntryNumber();
+}
+
+
+/**
+ ***************************************************************************
+ * Gibt die Daten an der angegebenen Stelle zurueck
+ *
+ * \author Joachim Danmayr
+ * \date   2012-10-13
+ *
+ ***************************************************************************
+ */
+QVariant TableModel::data(const QModelIndex &index, int role) const
+{
+    if (!index.isValid())
+    {
+        return QVariant();
+    }
+    if (index.row() >= mPasswordContainer->GetEntryNumber() || index.row() < 0)
+    {
+        return QVariant();
+    }
+    ContainerEntry* rowEntry;
+            mPasswordContainer->GetEntry(index.row(),&rowEntry);
+    PasswordEntry::Entry_t column = (PasswordEntry::Entry_t)index.column();
+
+    if ((role == Qt::DisplayRole) && (column!=PasswordEntry::iIcon))
+    {
+        bool decrypted = false;
+        if(PasswordEntry::ePassword==index.column()){
+            decrypted = true;
+        }
+        return *rowEntry->GetValue((PasswordEntry::Entry_t)index.column(),decrypted);
+    }
+
+    else if((role ==Qt::DecorationRole) && (column==PasswordEntry::iIcon))
+    {// Rolle fuer Icons
+        return rowEntry->GetValue((PasswordEntry::Entry_t)index.column(),false)->value<QIcon>();
+    }
+
+    return QVariant();
+}
+
+
+/**
+ ***************************************************************************
+ * Gibt den Header zurueck
+ *
+ * \author Joachim Danmayr
+ * \date   2012-10-13
+ *
+ ***************************************************************************
+ */
+QVariant TableModel::headerData(int section, Qt::Orientation orientation, int role) const
+{
+    // Groesse bestimmen
+    if(role == Qt::SizeHintRole && orientation == Qt::Horizontal)
+    {
+        // Groesse
+        return QVariant();
+    }
+
+    if (role != Qt::DisplayRole)
+    {
+        return QVariant();
+    }
+
+    if (orientation == Qt::Horizontal)
+    {
+        // Titel
+        if(section<=PasswordEntry::GetNumberOfTextEntries()){
+            return QString(*PasswordEntry::GetTitle((PasswordEntry::Entry_t)section));
+        }else{
+            return QVariant();
+        }
+    }
+    return QVariant();
+}
+
+
+
+/**
+ ***************************************************************************
+ * Updates the view
+ *
+ * \author Joachim Danmayr
+ * \date   2016-07-14
+ *
+ ***************************************************************************
+ */
+void TableModel::UpdateView()
+{
+    if(mDataList.size()>0){
+        beginInsertRows(QModelIndex(), 0, mDataList.size()-1);
+        endInsertRows();
+    }
+   // emit(dataChanged(createIndex(0, 0),createIndex(mDataList.size(),columnCount(createIndex(0,0)))));
+}
+
+
+
+/**
+ ***************************************************************************
+ * Flags auslesen
+ *
+ * \author Joachim Danmayr
+ * \date   2012-10-13
+ *
+ ***************************************************************************
+ */
+Qt::ItemFlags TableModel::flags(const QModelIndex &index) const
+{
+    if (!index.isValid())
+        return Qt::ItemIsEnabled;
+
+    return QAbstractTableModel::flags(index) | Qt::ItemIsEditable;
+}
+

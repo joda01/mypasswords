@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
+  <zoom_level>8</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>208</x>
+      <y>320</y>
+      <w>168</w>
+      <h>112</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
+/Type/
+--
+# KEY_FILED_SIZE
+# SIZE_FIELD_SIZE
+- id: uint
+--
++ GetId(): uint
++ GetHeaderSize(): int
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>40</x>
+      <y>496</y>
+      <w>240</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>*Elementary*
+--
+- dataSize: int
+- data: char[]
+--
++ Serialize(out: ostream)
++ Deserialize(in: istream)
++ Clear()
++ GetSize(): int
++ GetData(size: int): char*
++ SetData(data: *char, size: int)
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>296</x>
+      <y>496</y>
+      <w>232</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>*Nested*
+--
+- data: map&lt;int,Serializable*&gt;
+--
++ Serialize(out: ostream)
++ Deserialize(in: istream)
++ Clear()
++ GetSize(): int
+# SetElement(key: int, data: Serializable*)
+# GetElement(key: int): Serializable*
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>152</x>
+      <y>424</y>
+      <w>152</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>170.0;10.0;10.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>280</x>
+      <y>424</y>
+      <w>144</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;160.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>552</x>
+      <y>304</y>
+      <w>264</w>
+      <h>176</h>
+    </coordinates>
+    <panel_attributes>template=0: TYPE
+*Repeated*
+--
+- data: vector&lt;TYPE&gt;
+--
++ Serialize(out: ostream)
++ Deserialize(in: istream)
++ Clear()
++ GetSize(): int
++ GetHeaderSize(): int
++ AddElement(TYPE*)
++ GetElement(idx: int): TYPE*
++ EraseElement(idx: int)
++ GetNumberOfElements(): int
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>384</x>
+      <y>112</y>
+      <w>168</w>
+      <h>104</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
+/Serializable/
+--
+/+ Serialize(out: ostream)/
+/+ Deserialize(in: istream)/
+/+ Clear()/
+/+ GetSize(): int/
+/+ GetHeaderSize(): int/
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>456</x>
+      <y>208</y>
+      <w>208</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;240.0;130.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>288</x>
+      <y>208</y>
+      <w>192</w>
+      <h>128</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>220.0;10.0;10.0;140.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>24</x>
+      <y>56</y>
+      <w>800</w>
+      <h>640</h>
+    </coordinates>
+    <panel_attributes>msg</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
