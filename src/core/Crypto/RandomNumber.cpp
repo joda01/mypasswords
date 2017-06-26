@@ -21,12 +21,12 @@ RandomNumber::RandomNumber()
 
 void RandomNumber::Generate(char* number, uint32_t size, uint32_t startValue, uint32_t range)
 {
-    uint32_t seed_val=startValue;
-    std::mt19937 rng;
-    rng.seed(seed_val);
-    std::uniform_int_distribution<uint32_t> uint_dist(0,range);
-    for (uint32_t n = 0;n < size;n++) {
-        number[n] = uint_dist(rng);
+    std::random_device rd;
+    std::mt19937 mt(rd());
+    std::uniform_real_distribution<float> dist(0, range);
+    for (unsigned int i=0; i<size; ++i){
+        number[i] = (char)dist(mt);
     }
+
     mStartNumber++;
 }
