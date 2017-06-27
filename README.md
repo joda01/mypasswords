@@ -1,5 +1,15 @@
-# PassDB
-Userfriendly password manager for Windows and Linux
+# Table of Contents
+1. [What is PassDB](#what-is-passdb)
+2. [How to build](#how-to-build)
+2. [Contribute](#contribute)
+
+
+# What is PassDB
+PassDB is a userfriendly open source password manager.
+You can use it like KeePass for example. It is lightweight, and secure.
+
+![Screen shot](https://github.com/joda01/passdb/blob/develop/resources/screenshot_linux.png)
+
 
 # How to build
 
