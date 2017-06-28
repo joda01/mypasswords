@@ -1,7 +1,8 @@
 # Table of Contents
 1. [What is PassDB](#what-is-passdb)
 2. [How to build](#how-to-build)
-2. [Contribute](#contribute)
+3. [Documentation](#documentation)
+4. [Contribute](#contribute)
 
 
 # What is PassDB
@@ -24,6 +25,12 @@ You can use it like KeePass for example. It is lightweight, and secure.
 2. Download and install QT creator for Windows from [QT open source download page](https://www.qt.io/download-open-source/?hsCtaTracking=f977210e-de67-475f-a32b-65cec207fd03%7Cd62710cd-e1db-46aa-8d4d-2f1c1ffdacea#section-2)
 3. Open passdb.pro project with QT creator
 4. Press build button
+
+# Documentation
+
+* For class diagrams please use [Umlet](http://www.umlet.com/)
+* Code documentation inline in doxygen style.
+* User documentation will follow in this wiki.
 
 # Contribute
 
