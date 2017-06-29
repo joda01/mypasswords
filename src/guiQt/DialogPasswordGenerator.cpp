@@ -68,7 +68,12 @@ void DialogPasswordGenerator::GenerataPassword()
                                      ui->checkSpecial->isChecked(),
                                      ui->checkBrackets->isChecked(),
                                      ui->checkSpaces->isChecked());
-    //ui->textGeneratedPassword->setText(QString::fromStdString(generator.GeneratePassword(startvalue)));
+
+    int32_t minNrOfDigits = ui->textMinNrOfDigits->value();
+    int32_t minNrOfUpperCase = ui->textMinNrOfUpperCase->value();
+    int32_t minNrOfLowerCase = ui->textMinNrOfLowerCase->value();
+
+    ui->textGeneratedPassword->setText(QString::fromStdString(generator.GeneratePassword(startvalue,minNrOfDigits,minNrOfUpperCase,minNrOfLowerCase)));
 }
 
 ///
@@ -79,9 +84,6 @@ void DialogPasswordGenerator::GenerataPassword()
 void DialogPasswordGenerator::mouseMoveEvent (QMouseEvent * event)
 {
     mMouseMove+=event->globalX();
-    if(ui->checkGenerateOnMouseMove->isChecked()){
-        GenerataPassword();
-    }
 }
 
 ///
