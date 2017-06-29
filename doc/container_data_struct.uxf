@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>100</x>
+      <y>40</y>
+      <w>280</w>
+      <h>620</h>
+    </coordinates>
+    <panel_attributes>/*Container*/
+--
+
+{innerclass
+/*GroupEntry*/
+--
+mIcon{1}: Elementary
+mGroupId{2}: Elementary
+mParentId{3]: Elementary
+mName{4}: Elementary
+
+innerclass}
+
+{innerclass
+/*GroupEntry*/
+
+innerclass}
+...
+
+{innerclass
+/*PasswordEntry*/
+--
+mUID{1}: Elementary 
+mGroupId{2}: Elementary
+mPasswordElement: Repeated
+
+{innerclass
+*PasswordElement*
+--
+mIcon{1}: Elementary 
+mTitle{2}: Elementary
+mUsername{3}: Elementary
+mPassword{4}: Elementary
+mURL{5}: Elementary
+mNotes{6}: Elementary
+
+innerclass}
+
+{innerclass
+*PasswordElement*
+
+innerclass}
+
+innerclass}
+
+
+{innerclass
+/*PasswordEntry*/
+
+innerclass}
+...
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
