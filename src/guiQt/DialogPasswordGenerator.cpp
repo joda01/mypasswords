@@ -55,10 +55,8 @@ QString DialogPasswordGenerator::Show()
 void DialogPasswordGenerator::GenerataPassword()
 {
 
-    uint32_t currenTimeInms = QDateTime::currentMSecsSinceEpoch() - QDateTime(QDate::currentDate()).toMSecsSinceEpoch();
+    //uint32_t currenTimeInms = QDateTime::currentMSecsSinceEpoch() - QDateTime(QDate::currentDate()).toMSecsSinceEpoch();
 
-
-    uint32_t startvalue = mMouseMove ^currenTimeInms;
     sec::PasswordGenerator generator(ui->textLengthOfPassword->value(),
                                      ui->checkUpperCase->isChecked(),
                                      ui->checkLowerCase->isChecked(),
@@ -73,7 +71,7 @@ void DialogPasswordGenerator::GenerataPassword()
     int32_t minNrOfUpperCase = ui->textMinNrOfUpperCase->value();
     int32_t minNrOfLowerCase = ui->textMinNrOfLowerCase->value();
 
-    ui->textGeneratedPassword->setText(QString::fromStdString(generator.GeneratePassword(startvalue,minNrOfDigits,minNrOfUpperCase,minNrOfLowerCase)));
+    ui->textGeneratedPassword->setText(QString::fromStdString(generator.GeneratePassword(minNrOfDigits,minNrOfUpperCase,minNrOfLowerCase)));
 }
 
 ///

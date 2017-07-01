@@ -333,12 +333,18 @@ QMenu::item:selected {
        </item>
        <item>
         <widget class="QToolButton" name="toolButtonOpenURL">
+         <property name="toolTip">
+          <string>Open webside of the selected password</string>
+         </property>
+         <property name="statusTip">
+          <string>Open webside of the selected password</string>
+         </property>
          <property name="text">
           <string>...</string>
          </property>
          <property name="icon">
           <iconset resource="../../resources/resource.qrc">
-           <normaloff>:/icons_black/icons_black/domain_black.png</normaloff>:/icons_black/icons_black/domain_black.png</iconset>
+           <normaloff>:/icons_black/icons_black/external_link2_black.png</normaloff>:/icons_black/icons_black/external_link2_black.png</iconset>
          </property>
          <property name="iconSize">
           <size>
@@ -867,7 +873,7 @@ QMenu::item:selected {
   <action name="buttonOpenUrl">
    <property name="icon">
     <iconset resource="../../resources/resource.qrc">
-     <normaloff>:/icons_black/icons_black/domain_black.png</normaloff>:/icons_black/icons_black/domain_black.png</iconset>
+     <normaloff>:/icons_black/icons_black/external_link2_black.png</normaloff>:/icons_black/icons_black/external_link2_black.png</iconset>
    </property>
    <property name="text">
     <string>Open URL</string>
