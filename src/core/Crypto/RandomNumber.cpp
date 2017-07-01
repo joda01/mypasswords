@@ -30,3 +30,13 @@ void RandomNumber::Generate(char* number, uint32_t size, uint32_t startValue, ui
 
     mStartNumber++;
 }
+
+void RandomNumber::Generate(uint32_t& number, uint32_t range)
+{
+    std::random_device rd;
+    std::mt19937 mt(rd());
+    std::uniform_real_distribution<float> dist(0, range);
+    number = (uint32_t)dist(mt);
+
+    mStartNumber++;
+}
