@@ -5,6 +5,7 @@
 #include <QFileDialog>
 #include "../core/Crypto/hashing/argon.h"
 #include "../core/Crypto/Secure.h"
+#include "../core/Crypto/PasswordGenerator.h"
 
 WizardNewContainer::WizardNewContainer(Configuration* settings, PasswordContainerThread *passwordContainer, QWidget *parent) :
     QWizard(parent),
@@ -12,17 +13,12 @@ WizardNewContainer::WizardNewContainer(Configuration* settings, PasswordContaine
     mSettings(settings),
     mPasswordContainer(passwordContainer),
     mArgonThread(this),
-    mReadPasswordFileThread(&mPasswordList),
-    mOkPressed(false),
-    mPasswordListLoaded(false)
+    mOkPressed(false)
 {
     ui->setupUi(this);
 
     connect(passwordContainer,SIGNAL(ContainerEvent(int,int)),this,SLOT(on_PasswordThreadFinished(int, int)));
     connect(&mTimer,SIGNAL(timeout()),this,SLOT(on_timerTimeout()));
-    connect(&mReadPasswordFileThread,SIGNAL(finished()),this,SLOT(on_LoadPasswordListThreadFinished()));
-
-
 }
 
 WizardNewContainer::~WizardNewContainer()
@@ -42,7 +38,6 @@ WizardNewContainer::~WizardNewContainer()
 bool WizardNewContainer::ShowDialog(DialogType_t type)
 {
     mDialogType = type;
-    LoadPasswordListToRam();
 
     if(eNewContainer==type){
         /// New container dialog
@@ -260,11 +255,6 @@ void WizardNewContainer::on_WizardNewContainer_rejected()
 ///
 bool WizardNewContainer::ArePasswordsEqual()
 {
-    if(false==mPasswordListLoaded){
-        button(QWizard::NextButton)->setEnabled(false);
-        return false;
-    }
-
     if((ui->textPassword->text().size() > 0) && (0==ui->textPassword->text().compare(ui->textRepeatedPassword->text()))){
         ui->textRepeatedPassword->setStyleSheet(ui->textPassword->styleSheet());
         button(QWizard::NextButton)->setEnabled(true);
@@ -321,7 +311,7 @@ void WizardNewContainer::on_textPassword_textChanged(const QString &arg1)
 {
     Q_UNUSED(arg1);
     ArePasswordsEqual();
-    CheckPasswordSafety(arg1);
+    CheckPasswordQuality(arg1);
 }
 
 ///
@@ -340,25 +330,32 @@ void WizardNewContainer::on_textRepeatedPassword_textChanged(const QString &arg1
 /// \author     Joachim Danmayr
 /// \date       2016-07-22
 ///
-void WizardNewContainer::CheckPasswordSafety(const QString &arg1)
+void WizardNewContainer::CheckPasswordQuality(const QString &arg1)
 {
     QString password = ui->textPassword->text();
+    float entropy = sec::PasswordGenerator::CheckQuality(password.toStdString());
+    ui->progressQuality->setValue(entropy);
+
     ui->textPassword->setStyleSheet("");
     int size =arg1.size();
 
-    if(true == mPasswordList.contains(password)){
-        ui->labelPasswordSafety->setText(tr("Your password is a common password and not safe!"));
-        ui->textPassword->setStyleSheet("background:#F55454;");
-    }
-    else if(size<=0){
+    //if(true == mPasswordList.contains(password)){
+    //    ui->labelPasswordSafety->setText(tr("Your password is a common password and not safe!"));
+    //    ui->textPassword->setStyleSheet("background:#F55454;");
+    //}
+   if(size<=0){
         ui->labelPasswordSafety->setText(tr("Please enter a password!"));
         ui->textPassword->setStyleSheet("background:#F55454;");
     }
-    else if(size>0 && size<MINIMUM_PASSWORD_LENGTH){
-        ui->labelPasswordSafety->setText(tr("Short password!"));
+   else if(entropy<VERY_BAD_PASSWORD){
+       ui->labelPasswordSafety->setText(tr("Common password! Do not use this!"));
+       ui->textPassword->setStyleSheet("background:#F55454;");
+    }
+    else if(entropy<BAD_PASSWORD){
+        ui->labelPasswordSafety->setText(tr("For a computer it is easy to hack!"));
         ui->textPassword->setStyleSheet("background:#F5AC54;");
     }else{
-        ui->labelPasswordSafety->setText(tr("Could be a good password!"));
+        ui->labelPasswordSafety->setText(tr("Looks like be a good password!"));
         ui->textPassword->setStyleSheet("background:#54F58A;");
     }
     ArePasswordsEqual();
@@ -372,57 +369,6 @@ void WizardNewContainer::CheckPasswordSafety(const QString &arg1)
 void WizardNewContainer::on_textRepeatedPassword_editingFinished()
 {
 
-}
-
-///
-/// \brief      Loads the password list to teh RAM
-/// \author     Joachim Danmayr
-/// \date       2016-07-22
-///
-void WizardNewContainer::LoadPasswordListToRam()
-{
-    ui->labelStatus->setText(tr("Loading password list..."));
-    mReadPasswordFileThread.start();
-}
-
-///
-/// \brief      Thread which loads password list to RAM
-/// \author     Joachim Danmayr
-/// \date       2016-11-01
-///
-void WizardNewContainer::ReadFileThread::run()
-{
-    mStop=false;
-    QFile passwordList("passwordlist.txt");
-    bool ok = passwordList.open(QIODevice::ReadOnly | QIODevice::Text);
-    if(true==ok){
-        while((false==passwordList.atEnd()) && (false==mStop)){
-            QString pass(passwordList.readLine().trimmed());
-            mPasswordList->append(pass);
-            if(false==passwordList.isReadable()){
-                break;
-            }
-        }
-        passwordList.close();
-    }else{
-        std::cout << "WizardNewContainer::LoadPasswordListToRam::passwordlist.txt not found!" << std::endl;
-    }
-    std::cout << "WizardNewContainer::LoadPasswordListToRam::Loading finished!" << std::endl;
-
-}
-
-///
-/// \brief      Passwordlist has been loaded to RAM
-///             Thread finished
-/// \author     Joachim Danmayr
-/// \date       2016-11-01
-///
-void WizardNewContainer::on_LoadPasswordListThreadFinished(){
-    ArePasswordsEqual();
-    mPasswordListLoaded = true;
-    ui->labelStatus->setText(tr(""));
-    ArePasswordsEqual();
-    CheckPasswordSafety(ui->textPassword->text());
 }
 
 
@@ -546,11 +492,7 @@ void WizardNewContainer::CleanUp()
 {
     mDialogType = eNone;
     restart();
-    mReadPasswordFileThread.stop();
-    while(mReadPasswordFileThread.isRunning()){}
-    mPasswordList.clear();
     mOkPressed=false;
-    mPasswordListLoaded=false;
     ui->textFileName->clear();
     ui->textOldPassword->clear();
     ui->textPassword->clear();

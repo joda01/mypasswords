@@ -43,16 +43,6 @@ class WizardNewContainer : public QWizard
         crypto::Argon2* mArgon;
     };
 
-    class ReadFileThread : public QThread{
-    public:
-        ReadFileThread(QStringList* listToLoad):mPasswordList(listToLoad),mStop(false){}
-        void stop(){mStop=true;}
-    private:
-        virtual void run() override;
-        QStringList* mPasswordList;
-        bool mStop;
-    };
-
 public:
     enum DialogType_t {eNone, eNewContainer, eNewPassword};
     explicit WizardNewContainer(Configuration *settings, PasswordContainerThread *passwordContainer, QWidget *parent = 0);
@@ -92,8 +82,6 @@ private slots:
 
     void on_textRepeatedPassword_editingFinished();
 
-    void on_LoadPasswordListThreadFinished();
-
 private:
     ///////////////////////////////////////////////////////////////
     /// Constants
@@ -102,18 +90,18 @@ private:
     static const int32_t PROGRESSBAR_TIME_MS = 5000;        ///< Maximum time for the progressbar in ms
     static const int32_t WIZARD_PAGE1 = 0;                  ///< Index of the first wizard page
     static const int32_t WIZARD_PAGE2 = 1;                  ///< Index of the second wizard page
-    static const int32_t MINIMUM_PASSWORD_LENGTH = 10;
+    static const int32_t VERY_BAD_PASSWORD = 5;
+    static const int32_t BAD_PASSWORD      = 40;
 
 
     ///////////////////////////////////////////////////////////////
     /// Methods
     bool ArePasswordsEqual();
-    void CheckPasswordSafety(const QString &arg1);
+    void CheckPasswordQuality(const QString &arg1);
     void CreateContainer();
     void ChangePassword();
     void CreateContainerFinsihed(int error);
     void ChangePasswordFinished(int error);
-    void LoadPasswordListToRam();
     void CleanUp();
     void Restart();
 
@@ -123,16 +111,12 @@ private:
     Configuration* mSettings;
     PasswordContainerThread *mPasswordContainer;
     ArgonThread mArgonThread;
-    ReadFileThread mReadPasswordFileThread;
     QTimer mTimer;
     uint32_t mArgonCounter;
     std::string mPassword;
     std::string mPasswordOld;
     DialogType_t mDialogType;
-    QStringList mPasswordList;
     bool mOkPressed;
-    bool mPasswordListLoaded;
-
 };
 
 #endif // WIZARDNEWCONTAINER_H

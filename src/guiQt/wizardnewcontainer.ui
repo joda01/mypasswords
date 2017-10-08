@@ -27,20 +27,38 @@
     <string>Container password</string>
    </property>
    <layout class="QGridLayout" name="gridLayout">
-    <item row="0" column="1">
-     <widget class="QLineEdit" name="textFileName"/>
+    <item row="1" column="0">
+     <widget class="QLabel" name="labelOldPassword">
+      <property name="text">
+       <string>Old password:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="2">
+     <widget class="QPushButton" name="buttonSelectFile">
+      <property name="text">
+       <string/>
+      </property>
+      <property name="icon">
+       <iconset>
+        <normaloff>:/flags_color/icons_black/open_folder2_black.png</normaloff>:/flags_color/icons_black/open_folder2_black.png</iconset>
+      </property>
+     </widget>
+    </item>
+    <item row="6" column="1">
+     <widget class="QLabel" name="labelPasswordSafety">
+      <property name="text">
+       <string>Please enter a password!</string>
+      </property>
+      <property name="wordWrap">
+       <bool>true</bool>
+      </property>
+     </widget>
     </item>
     <item row="3" column="1">
      <widget class="QLineEdit" name="textPassword">
       <property name="echoMode">
        <enum>QLineEdit::Password</enum>
-      </property>
-     </widget>
-    </item>
-    <item row="3" column="0">
-     <widget class="QLabel" name="label_2">
-      <property name="text">
-       <string>Password:</string>
       </property>
      </widget>
     </item>
@@ -51,10 +69,24 @@
       </property>
      </widget>
     </item>
-    <item row="2" column="0" colspan="3">
-     <widget class="Line" name="line_2">
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
+    <item row="1" column="1">
+     <widget class="QLineEdit" name="textOldPassword">
+      <property name="echoMode">
+       <enum>QLineEdit::Password</enum>
+      </property>
+     </widget>
+    </item>
+    <item row="7" column="1">
+     <widget class="QLabel" name="labelStatus">
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="0">
+     <widget class="QLabel" name="label_2">
+      <property name="text">
+       <string>Password:</string>
       </property>
      </widget>
     </item>
@@ -72,45 +104,33 @@
       </property>
      </widget>
     </item>
-    <item row="0" column="2">
-     <widget class="QPushButton" name="buttonSelectFile">
-      <property name="text">
-       <string/>
-      </property>
-      <property name="icon">
-       <iconset resource="../../resources/resource.qrc">
-        <normaloff>:/flags_color/icons_black/open_folder2_black.png</normaloff>:/flags_color/icons_black/open_folder2_black.png</iconset>
+    <item row="0" column="1">
+     <widget class="QLineEdit" name="textFileName"/>
+    </item>
+    <item row="2" column="0" colspan="3">
+     <widget class="Line" name="line_2">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
       </property>
      </widget>
     </item>
     <item row="5" column="1">
-     <widget class="QLabel" name="labelPasswordSafety">
-      <property name="text">
-       <string>Please enter a password!</string>
+     <widget class="QProgressBar" name="progressQuality">
+      <property name="maximum">
+       <number>128</number>
       </property>
-      <property name="wordWrap">
-       <bool>true</bool>
+      <property name="value">
+       <number>0</number>
       </property>
-     </widget>
-    </item>
-    <item row="1" column="1">
-     <widget class="QLineEdit" name="textOldPassword">
-      <property name="echoMode">
-       <enum>QLineEdit::Password</enum>
+      <property name="format">
+       <string>%v bits</string>
       </property>
      </widget>
     </item>
-    <item row="1" column="0">
-     <widget class="QLabel" name="labelOldPassword">
+    <item row="5" column="0">
+     <widget class="QLabel" name="label">
       <property name="text">
-       <string>Old password:</string>
-      </property>
-     </widget>
-    </item>
-    <item row="6" column="1">
-     <widget class="QLabel" name="labelStatus">
-      <property name="text">
-       <string/>
+       <string>Quality:</string>
       </property>
      </widget>
     </item>
@@ -256,8 +276,6 @@
   <tabstop>buttonTestArgon</tabstop>
   <tabstop>spinMemoryCost</tabstop>
  </tabstops>
- <resources>
-  <include location="../../resources/resource.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

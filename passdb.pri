@@ -43,7 +43,8 @@ SOURCES += \
     src/guiQt/dialogcomment.cpp \
     $$PWD/src/plugin/pluginwebsocket.cpp \
     $$PWD/src/web/smtp.cpp \
-    src/guiQt/dialogimport.cpp
+    src/guiQt/dialogimport.cpp \
+    $$PWD/src/core/Crypto/zxcvbn/zxcvbn.c
 
 
 HEADERS  += \
@@ -98,7 +99,8 @@ HEADERS  += \
     src/guiQt/dialogcomment.h \
     $$PWD/src/plugin/pluginwebsocket.h \
     $$PWD/src/web/smtp.h \
-    src/guiQt/dialogimport.h
+    src/guiQt/dialogimport.h \
+    $$PWD/src/core/Crypto/zxcvbn/zxcvbn.h
 
 
 FORMS += \

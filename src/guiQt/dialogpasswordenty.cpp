@@ -10,6 +10,7 @@
 #include "DialogPasswordGenerator.h"
 #include "ui_dialogpasswordenty.h"
 #include "../core/Crypto/Secure.h"
+#include "../core/Crypto/PasswordGenerator.h"
 #include "DialogPasswordGenerator.h"
 #include <QDesktopServices>
 #include <QDebug>
@@ -326,13 +327,8 @@ void DialogPasswordEnty::on_buttonPwdShow_toggled(bool checked)
 void DialogPasswordEnty::on_textPassword_textChanged(const QString &text)
 {
     Q_UNUSED(text);
-    //int entropy = 0;
-    //if(entropy > ui->progressBar->maximum()){
-    //    ui->progressBar->setMaximum(entropy);
-    //}else{
-    //    ui->progressBar->setMaximum(PROGRESSBAR_MINIMUM);
-    //}
-    //ui->progressBar->setValue(entropy);
+    float entropy = sec::PasswordGenerator::CheckQuality(text.toStdString());
+    ui->progressBar->setValue(entropy);
 }
 
 ///

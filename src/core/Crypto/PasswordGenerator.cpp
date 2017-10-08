@@ -10,6 +10,7 @@
 
 #include "PasswordGenerator.h"
 #include "../Crypto/RandomNumber.h"
+#include "zxcvbn/zxcvbn.h"
 #include <cstdint>
 #include <algorithm>
 #include <iostream>
@@ -93,7 +94,7 @@ std::string PasswordGenerator::GeneratePassword(uint32_t minNrOfDigits, uint32_t
         password.append(GenerateRandomString(space,minNumberOfSpaces));
     }
 
-     //////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////
     // Fill the rest to the given password length with random chars from the selected areas
     int32_t numberOfFixedChar = (minNrOfDigits+minNrOfUpperCase+minNrOfLowerCase+minNrOfPlusMinus+minNrOfUnderScore+minNumberOfSpecial+minNumberOfBractes+minNumberOfSpaces);
     if(mPasswordSize > numberOfFixedChar){
@@ -169,4 +170,23 @@ std::string PasswordGenerator::PrepareCharSet()
 
     return wort;
 }
+
+///
+/// \brief     Calcultes the entropy of the given
+///            password. A higher value is a better password
+///            For calculation zxcvbn library is used
+/// \author    Joachim Danmayr
+/// \date      2017-10-08
+/// \param[in] password     Password which should be checked
+/// \return    entropy of the password
+///
+float PasswordGenerator::CheckQuality(std::string password)
+{
+    const char *UsrDict[] ={"Onename.Twoname@example.com", "Onename", "Twoname", "example.com", "example",0};
+    ZxcMatch_t *Info;
+    float e = ZxcvbnMatch(password.c_str(), UsrDict, &Info);
+    return e;
+}
+
+
 }
