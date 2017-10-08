@@ -424,9 +424,11 @@ void WindowMain::OpenEditPasswordDialog(void)
         DialogPasswordEnty* dialog =  new DialogPasswordEnty(this);
         Container::PasswordEntry* entry;
         entry = mContainerThread.GetPasswordEntry((int32_t)selecetRows.at(0).row());
-        dialog->ShowDialog(&mContainerThread,entry);
+        bool ok = dialog->ShowDialog(&mContainerThread,entry);
         delete dialog;
-        SetChanged();
+        if(true == ok){
+            SetChanged();
+        }
     }
 }
 

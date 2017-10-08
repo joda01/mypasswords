@@ -265,6 +265,7 @@ void DialogPasswordEnty::ClearTextFieldContent(void)
 ///
 void DialogPasswordEnty::on_buttonBox_rejected()
 {
+    mOkPressed = false;
 }
 
 ///
