@@ -9,8 +9,7 @@
 PassDB is a userfriendly open source password manager.
 You can use it like KeePass for example. It is lightweight, and secure.
 
-![Screen shot](https://github.com/joda01/passdb/blob/develop/resources/screenshot_linux.png)
-
+![Screen shot](https://github.com/joda01/mypasswords/blob/master/resources/screenshot_linux.png)
 
 # How to build
 
