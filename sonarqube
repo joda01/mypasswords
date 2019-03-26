@@ -1,0 +1,3 @@
+build-wrapper-linux-x86-64 --out-dir bw-output make clean all
+
+sonar-scanner   -Dsonar.projectKey=passwords   -Dsonar.organization=joda01-github   -Dsonar.sources=.   -Dsonar.cfamily.build-wrapper-output=bw-output   -Dsonar.host.url=https://sonarcloud.io   -Dsonar.login=b6ea8de6ebf9c7a54eb224d324282cbe00dbd6e1
